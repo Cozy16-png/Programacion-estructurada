@@ -1,3 +1,115 @@
-<Solution>
-  <Project Path="Unidad 2 practica 11/Unidad 2 practica 11.csproj" />
-</Solution>
+namespace Unidad_2_practica_11
+{
+    using System;
+    using System.Collections.Generic;
+
+    class Program
+    {
+        static void Main()
+        {
+
+            int cantidad = 0;
+            while (true)
+            {
+                Console.Write("Numero de personas a ingresar: ");
+                string entrada = Console.ReadLine();
+
+                if (int.TryParse(entrada, out cantidad) && cantidad >= 1)
+                {
+                    break;
+                }
+                Console.WriteLine("Por favor ingrese un valor valido");
+            }
+
+
+            List<string> nombres = new List<string>();
+            List<int> edades = new List<int>();
+
+
+            for (int i = 0; i < cantidad; i++)
+            {
+                Console.WriteLine($"\n--- Registro de la persona #{i + 1} ---");
+
+                Console.Write("Nombre: ");
+                nombres.Add(Console.ReadLine());
+
+                int edadValida = 0;
+                while (true)
+                {
+                    Console.Write("Edad: ");
+                    if (int.TryParse(Console.ReadLine(), out edadValida) && edadValida >= 0)
+                    {
+                        edades.Add(edadValida);
+                        break;
+                    }
+                    Console.WriteLine("Por favor, ingrese una edad valida");
+                }
+            }
+
+            Console.WriteLine("\n------- RESULTADOS -------");
+
+
+            if (cantidad == 1)
+            {
+                string nombreUnico = nombres[0];
+                int edadUnica = edades[0];
+
+                if (edadUnica >= 18)
+                {
+                    Console.WriteLine($"{nombreUnico} es Mayor de edad.");
+                }
+                else
+                {
+                    Console.WriteLine($"{nombreUnico} es Menor de edad.");
+                }
+            }
+
+            else
+            {
+
+                Console.WriteLine("Lista General de Registrados:");
+                for (int i = 0; i < cantidad; i++)
+                {
+                    Console.WriteLine("- " + nombres[i] + " (" + edades[i] + " años)");
+                }
+
+
+                List<string> listaMayores = new List<string>();
+                List<string> listaMenores = new List<string>();
+
+                for (int i = 0; i < cantidad; i++)
+                {
+                    string datosPersona = nombres[i] + ", " + edades[i] + " años";
+
+                    if (edades[i] >= 18)
+                    {
+                        listaMayores.Add(datosPersona);
+                    }
+                    else
+                    {
+                        listaMenores.Add(datosPersona);
+                    }
+                }
+
+
+                if (listaMayores.Count > 0)
+                {
+                    Console.WriteLine("\nListado de Mayores de Edad:");
+                    foreach (string p in listaMayores)
+                    {
+                        Console.WriteLine(p);
+                    }
+                }
+
+                if (listaMenores.Count > 0)
+                {
+                    Console.WriteLine("\nListado de Menores de Edad:");
+                    foreach (string p in listaMenores)
+                    {
+                        Console.WriteLine(p);
+                    }
+                }
+            }
+        }
+    }
+}
