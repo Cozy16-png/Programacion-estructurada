@@ -37,7 +37,7 @@ namespace Unidad_2_practica_11
                 while (true)
                 {
                     Console.Write("Edad: ");
-                    if (int.TryParse(Console.ReadLine(), out edadValida) && edadValida >= 0)
+                    if (int.TryParse(Console.ReadLine(), out edadValida) && edadValida > 0)
                     {
                         edades.Add(edadValida);
                         break;
@@ -113,3 +113,4 @@ namespace Unidad_2_practica_11
         }
     }
 }
+
